@@ -1,7 +1,14 @@
 
 import express from 'express';
+import { IUser } from './types/model-type/user';
 
-
+declare global {
+  namespace Express {
+    interface Request {
+      user?: IUser;
+    }
+  }
+}
 
 const app = express();
 

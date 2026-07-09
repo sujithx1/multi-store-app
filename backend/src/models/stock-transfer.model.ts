@@ -45,7 +45,7 @@ const stockTransactionSchema = new Schema<IStockTransaction>(
   }
 );
 
-export default model<IStockTransaction>(
+export const StockTransactionModel = model<IStockTransaction>(
   "StockTransaction",
   stockTransactionSchema
 );

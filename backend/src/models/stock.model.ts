@@ -36,4 +36,4 @@ stockSchema.index(
   }
 );
 
-export default model<IStock>("Stock", stockSchema);
+export const StockModel = model<IStock>("Stock", stockSchema);
