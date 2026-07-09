@@ -12,13 +12,13 @@ export interface IStockTransaction {
 
   productId: Types.ObjectId;
 
-  fromStoreId?: Types.ObjectId;
+  senderStoreId?: Types.ObjectId;
 
-  toStoreId?: Types.ObjectId;
+  receiverStoreId?: Types.ObjectId;
 
   quantity: number;
 
-  performedBy: Types.ObjectId;
+  userId: Types.ObjectId;
 
   note?: string;
 

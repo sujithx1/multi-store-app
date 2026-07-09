@@ -8,11 +8,11 @@ export enum UserRole {
 export interface IUser {
   _id?: Types.ObjectId;
 
-  name: string;
+  username: string;
 
   email: string;
 
-  passwordHash: string;
+  password: string;
 
   role: UserRole;
 

@@ -14,12 +14,12 @@ const stockTransactionSchema = new Schema<IStockTransaction>(
       required: true,
     },
 
-    fromStoreId: {
+    senderStoreId: {
       type: Schema.Types.ObjectId,
       ref: "Store",
     },
 
-    toStoreId: {
+    receiverStoreId: {
       type: Schema.Types.ObjectId,
       ref: "Store",
     },
@@ -30,7 +30,7 @@ const stockTransactionSchema = new Schema<IStockTransaction>(
       min: 1,
     },
 
-    performedBy: {
+    userId: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,

@@ -3,7 +3,7 @@ import { IUser, UserRole } from "../types/model-type/user";
 
 const userSchema = new Schema<IUser>(
   {
-    name: {
+    username: {
       type: String,
       required: true,
       trim: true,
@@ -16,7 +16,7 @@ const userSchema = new Schema<IUser>(
       lowercase: true,
     },
 
-    passwordHash: {
+    password: {
       type: String,
       required: true,
     },
