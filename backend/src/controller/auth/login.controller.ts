@@ -17,9 +17,12 @@ export const login = async (req: Request, res: Response) => {
 
   const { email, password } = body.data;
 
-  const user = await UserModel.findOne({ email });
+  const user = await UserModel.findOne({ email }).select(
+    "+password name email role"
+  ); // dont need to use  lean because i need to remove  the password to  response
+
   if (!user) {
-    return res.status(404).json({ error: "user not found" });
+    return res.status(404).json({ error: "Ivalid email " });
   }
 
   const passwordMatch = await comparePassword(password, user.password);
@@ -29,5 +32,10 @@ export const login = async (req: Request, res: Response) => {
 
   const token = createToken({ userId: user._id.toString(), role: user.role });
 
-  return res.status(200).json({ message: "success", token, user });
+  const userResponse = user.toObject();
+  delete userResponse.password;
+
+  return res
+    .status(200)
+    .json({ message: "success", token, user: userResponse });
 };

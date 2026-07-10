@@ -19,6 +19,7 @@ const userSchema = new Schema<IUser>(
     password: {
       type: String,
       required: true,
+      select: false, // this is for  not return password the  password when we get the user from the database  // if you want u can use +password
     },
 
     role: {
