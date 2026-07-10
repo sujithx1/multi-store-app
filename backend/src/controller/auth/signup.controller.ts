@@ -31,5 +31,5 @@ export const signUpController = async (req: Request, res: Response) => {
   });
 
   const userobj = await UserModel.findOne({ email }).select("-password");
-  return res.status(201).json({ message: "success", user: userobj });
+  return res.status(201).json({ message: "success", data: userobj });
 };

@@ -20,4 +20,8 @@ export const getStoresController = async (req: Request, res: Response) => {
     .sort({ createdAt: -1 })
     .skip(query.offcet)
     .limit(query.limit);
+
+
+
+    return res.status(200).json({ message: "success", data: stores });
 };

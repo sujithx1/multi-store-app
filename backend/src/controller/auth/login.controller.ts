@@ -35,7 +35,9 @@ export const login = async (req: Request, res: Response) => {
   const userResponse = user.toObject();
   delete userResponse.password;
 
-  return res
-    .status(200)
-    .json({ message: "success", token, user: userResponse });
+  const data = {
+    token,
+    user: userResponse,
+  };
+  return res.status(200).json({ message: "success", data });
 };

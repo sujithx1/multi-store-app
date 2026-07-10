@@ -33,7 +33,7 @@ export const updateProductController = async (req: Request, res: Response) => {
         error: "Product SKU already exists! Please use a unique SKU.",
       });
     }
-    
+
   }
 
   await ProductModel.findByIdAndUpdate(
@@ -46,4 +46,5 @@ export const updateProductController = async (req: Request, res: Response) => {
       runValidators: true,
     }
   );
+  return res.status(200).json({ message: "succes to update  product" });
 };

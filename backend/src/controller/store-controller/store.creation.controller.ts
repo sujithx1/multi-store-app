@@ -28,5 +28,5 @@ export const storeCreateController = async (req: Request, res: Response) => {
     location,
   });
 
-  return res.status(201).json({ message: "success", store });
+  return res.status(201).json({ message: "success", date:store });
 };

@@ -33,5 +33,5 @@ export const createProductController = async (req: Request, res: Response) => {
     sku,
   });
 
-  return res.status(201).json({ message: "success", product });
+  return res.status(201).json({ message: "success",data: product });
 };
