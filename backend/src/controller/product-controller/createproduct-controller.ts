@@ -25,7 +25,7 @@ export const createProductController = async (req: Request, res: Response) => {
 
   const productExists = await ProductModel.findOne({ sku });
   if (productExists) {
-    return res.status(400).json({ error: "Product SKU already exists" });
+    return res.status(400).json({ error: "Product SKU already exists ! Try to Make Unique" });
   }
 
   const product = await ProductModel.create({

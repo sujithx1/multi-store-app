@@ -15,6 +15,8 @@ const productSchema = new Schema<IProduct>(
       unique: true,
       uppercase: true,
       trim: true,
+      minLength: 3,
+      maxlength:10
     },
   },
   {
