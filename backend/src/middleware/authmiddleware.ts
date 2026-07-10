@@ -18,7 +18,9 @@ export const authenticate = async (
 
     const payload = verifyToken(token);
 
-    const user = await UserModel.findById(payload.userId).select("-passwordHash");
+    const user = await UserModel.findById(payload.userId).select(
+      "-passwordHash"
+    );
 
     if (!user) {
       return res.status(401).json({ message: "User not found" });
@@ -32,15 +34,13 @@ export const authenticate = async (
   }
 };
 
-
-
-export const isAdminOnly=(req:Request,res:Response,next:NextFunction)=>{
-  if(req.user.role!=='admin'){
-    return res.status(403).json({message:"Forbidden"})
+export const isAdminOnly = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  if (req.user.role !== "admin") {
+    return res.status(403).json({ message: "Forbidden" });
   }
-  next()
-}
-
-
-
-
+  next();
+};

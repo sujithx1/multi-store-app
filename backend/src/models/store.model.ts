@@ -18,4 +18,4 @@ const storeSchema = new Schema<IStore>(
   }
 );
 
-export const StoreModel= model<IStore>("Store", storeSchema);
+export const StoreModel = model<IStore>("Store", storeSchema);

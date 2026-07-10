@@ -1,6 +1,5 @@
-
-import express from 'express';
-import { IUser } from './types/model-type/user';
+import express from "express";
+import { IUser } from "./types/model-type/user";
 
 declare global {
   namespace Express {
@@ -12,14 +11,10 @@ declare global {
 
 const app = express();
 
-app.use(express.json())
-
-
-
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.json({ message: "API is running" });
 });
 
-
-export default app
+export default app;

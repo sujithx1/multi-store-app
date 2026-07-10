@@ -1,5 +1,8 @@
 import { Schema, model } from "mongoose";
-import { IStockTransaction, TransactionType } from "../types/model-type/stock-transfer";
+import {
+  IStockTransaction,
+  TransactionType,
+} from "../types/model-type/stock-transfer";
 const stockTransactionSchema = new Schema<IStockTransaction>(
   {
     type: {
