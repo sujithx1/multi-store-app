@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { verifyToken } from "../config/jwt";
 import { UserModel } from "../models/user.model";
+import { IUser } from "../types/model-type/user";
 
 export const authenticate = async (
   req: Request,
@@ -43,4 +44,16 @@ export const isAdminOnly = (
     return res.status(403).json({ message: "Forbidden" });
   }
   next();
+};
+
+
+// this one we can use without optional 
+
+export const getAuthContext = async (req: Request, res: Response) => {
+  const val = req.user;
+  if (!val) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  return val as IUser;
 };
