@@ -45,7 +45,7 @@ export const transferStockController = async (req: Request, res: Response) => {
   session.startTransaction();
 
   const sourceStock = await StockModel.findOneAndUpdate(
-    { storeId: senderStoreId, productId, quantity: { $gte: quantity } },
+    { storeId: senderStoreId, productId, quantity: { $gte: quantity } }, // gte quantity means  its never become negative
     { $inc: { quantity: -quantity } },
     { new: true, session }
   );
@@ -64,6 +64,13 @@ export const transferStockController = async (req: Request, res: Response) => {
     { $inc: { quantity: quantity } },
     { new: true, upsert: true, session, setDefaultsOnInsert: true }
   );
+  if (!data) {
+    await session.abortTransaction();
+    session.endSession();
+    return res.status(400).json({
+      error: "Error while updating stock at Destination store",
+    });
+  }
 
   await session.commitTransaction();
   session.endSession();

@@ -9,6 +9,9 @@ export const PaginationSchema = z
 
 
     filter: z.string().optional(),
+    productId: z.string().optional(),
+    storeId: z.string().optional(),
+    threshold: z.string().optional(),
   })
   .transform((d) => {
     return {
