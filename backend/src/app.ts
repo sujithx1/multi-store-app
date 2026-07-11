@@ -1,10 +1,11 @@
+import cookieParser from "cookie-parser";
+import cors from "cors";
 import express from "express";
+import morgan from "morgan";
+import connectDB from "./config/db";
 import { errorHandler } from "./middleware/error-handler";
 import { IUser } from "./types/model-type/user";
-import connectDB from "./config/db";
-import cors from "cors";
-import morgan from "morgan";
-import cookieParser from "cookie-parser";
+import { router } from "./routes";
 
 declare global {
   namespace Express {
@@ -14,7 +15,7 @@ declare global {
   }
 }
 const app = express();
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
 
 connectDB();
 app.use(morgan("dev"));
+app.use("/api/v1", router);
 app.use(errorHandler as express.ErrorRequestHandler);
 
 export default app;

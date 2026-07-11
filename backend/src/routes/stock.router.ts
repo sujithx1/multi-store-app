@@ -2,9 +2,11 @@ import { Router } from "express";
 import { authenticate, isAdminOnly } from "../middleware/authmiddleware";
 import { listStockController, quantutyChangeController, transferStockController } from "../controller";
 
-const router = Router();
+const stockrouter = Router();
 
-router.use(authenticate)
-router.post("/adjust", isAdminOnly, quantutyChangeController);
-router.post("/transfer", isAdminOnly, transferStockController);
-router.get("/",  listStockController);
+stockrouter.use(authenticate)
+stockrouter.post("/adjust", isAdminOnly, quantutyChangeController);
+stockrouter.post("/transfer", isAdminOnly, transferStockController);
+stockrouter.get("/",  listStockController);
+
+export default stockrouter

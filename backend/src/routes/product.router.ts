@@ -2,9 +2,10 @@ import { Router } from "express";
 import { createProductController, getProductCOntroller } from "../controller";
 import { authenticate, isAdminOnly } from "../middleware/authmiddleware";
 
-const router = Router();
+const productrouter = Router();
 
-router.use(authenticate);
+productrouter.use(authenticate);
 
-router.post("/", isAdminOnly, createProductController);
-router.get("/", getProductCOntroller);
+productrouter.post("/", isAdminOnly, createProductController);
+productrouter.get("/", getProductCOntroller);
+export default productrouter

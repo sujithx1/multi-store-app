@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { isAdminOnly } from '../middleware/authmiddleware';
 import { getStoresController, storeCreateController } from '../controller';
-const router = Router();
+const storeRouter = Router();
 
-router.post('/', isAdminOnly, storeCreateController);
-router.get('/',  getStoresController);
+storeRouter.post('/', isAdminOnly, storeCreateController);
+storeRouter.get('/',  getStoresController);
 
-export default router;
+export default storeRouter;
