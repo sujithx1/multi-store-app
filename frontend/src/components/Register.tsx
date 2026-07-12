@@ -33,11 +33,11 @@ export default function Register({
     onMutate: () => setLoading(true),
     onError: (err: any) => {
       setError(
-        err?.response?.data?.error || err.message || "Registration failed",
+        err.friendlyMessage || err.message || "Registration failed",
       );
     },
     onSuccess: (data) => {
-      onRegisterSuccess(data);
+      onRegisterSuccess(data?.data);
     },
     onSettled: () => setLoading(false),
   });

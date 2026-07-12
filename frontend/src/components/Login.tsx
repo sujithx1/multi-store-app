@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import { login } from "../api/auth";
 
 export interface UserResponse {
-  _id: string;
-  username: string;
-  role: string;
-  email: string;
+  token: string;
+  user: {
+    username: string;
+    role: "Admin" | "Shopper";
+    token: string;
+  };
 }
 interface LoginProps {
   onLoginSuccess: (userData: UserResponse) => void;
