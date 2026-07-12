@@ -9,21 +9,20 @@ export default function ProductPage() {
   const [page, setPage] = useState(1);
   const limit = 5;
 
-  // Form Modal States
+  // modal visibility and active item state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   
-  // Confirmation Modal State
+  // store id of selected item to confirm delete
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
 
-  // Form Fields
+  // input values for creating or editing
   const [name, setName] = useState("");
   const [sku, setSku] = useState("");
 
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
 
-  // Backend Pagination Query
   const { data: products = [], isLoading } = useQuery<Product[]>({
     queryKey: ["products", page, search],
     queryFn: () => getProducts({ page, limit, search }),
@@ -110,7 +109,7 @@ export default function ProductPage() {
 
   return (
     <div className="bg-slate-50 min-h-screen p-6 antialiased">
-      {/* Header */}
+      {/* page title and header actions */}
       <div className="mb-6 flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Product Management</h1>
@@ -125,7 +124,7 @@ export default function ProductPage() {
         </button>
       </div>
 
-      {/* Notifications */}
+      {/* display success or error messages */}
       {successMsg && (
         <div className="mb-4 rounded-lg bg-emerald-50 border border-emerald-200 p-3 text-sm text-emerald-800">
           {successMsg}
@@ -137,7 +136,7 @@ export default function ProductPage() {
         </div>
       )}
 
-      {/* Filter Toolbar */}
+      {/* input field for search filtering */}
       <div className="mb-6 flex gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-sm items-center">
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
@@ -154,7 +153,7 @@ export default function ProductPage() {
         </div>
       </div>
 
-      {/* Products Table */}
+      {/* products catalog list */}
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         {isLoading ? (
           <div className="p-8 text-center text-slate-500">Loading catalog...</div>
@@ -202,7 +201,7 @@ export default function ProductPage() {
           </div>
         )}
 
-        {/* Pagination */}
+        {/* table paginator controls */}
         <div className="flex items-center justify-between border-t border-slate-200 bg-slate-50 px-4 py-3">
           <div className="text-xs text-slate-500">
             Page {page}
@@ -226,7 +225,7 @@ export default function ProductPage() {
         </div>
       </div>
 
-      {/* Create / Edit Modal */}
+      {/* create or edit form overlay */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm">
           <div className="bg-white rounded-2xl border border-slate-200 shadow-xl w-full max-w-md overflow-hidden">
@@ -283,7 +282,7 @@ export default function ProductPage() {
         </div>
       )}
 
-      {/* Confirmation Modal */}
+      {/* confirm delete prompt */}
       {confirmDeleteId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm">
           <div className="bg-white rounded-2xl border border-slate-200 shadow-xl w-full max-w-sm p-6 overflow-hidden">

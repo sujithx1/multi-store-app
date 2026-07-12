@@ -11,14 +11,14 @@ export default function StorePage() {
   const [page, setPage] = useState(1);
   const itemsPerPage = 5;
 
-  // Form Modal States
+  // modal visibility and editing state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingStore, setEditingStore] = useState<StoreType | null>(null);
 
-  // Confirmation Modal State
+  // track ID to confirm store deletion
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
 
-  // Form Fields
+  // input fields for creation / editing
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
 
@@ -118,7 +118,7 @@ export default function StorePage() {
     }
   };
 
-  // Filter, Sort & Paginate
+  // filter and sort store records
   const filteredStores = stores.filter(
     (s) =>
       s.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -141,7 +141,7 @@ export default function StorePage() {
 
   return (
     <div className="bg-slate-50 min-h-screen p-6 antialiased">
-      {/* Header */}
+      {/* page title and header controls */}
       <div className="mb-6 flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Store Management</h1>
@@ -156,7 +156,7 @@ export default function StorePage() {
         </button>
       </div>
 
-      {/* Notifications */}
+      {/* notification banner triggers */}
       {successMsg && (
         <div className="mb-4 rounded-lg bg-emerald-50 border border-emerald-200 p-3 text-sm text-emerald-800">
           {successMsg}
@@ -168,7 +168,7 @@ export default function StorePage() {
         </div>
       )}
 
-      {/* Filter Toolbar */}
+      {/* search utility */}
       <div className="mb-6 flex gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-sm items-center">
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
@@ -185,7 +185,7 @@ export default function StorePage() {
         </div>
       </div>
 
-      {/* Stores Table */}
+      {/* stores records list */}
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         {isLoading ? (
           <div className="p-8 text-center text-slate-500">Loading stores...</div>
@@ -235,7 +235,7 @@ export default function StorePage() {
           </div>
         )}
 
-        {/* Pagination */}
+        {/* pager layout */}
         {totalPages > 1 && (
           <div className="flex items-center justify-between border-t border-slate-200 bg-slate-50 px-4 py-3">
             <div className="text-xs text-slate-500">
@@ -261,7 +261,7 @@ export default function StorePage() {
         )}
       </div>
 
-      {/* Create / Edit Modal */}
+      {/* creation and update modal layout */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm">
           <div className="bg-white rounded-2xl border border-slate-200 shadow-xl w-full max-w-md overflow-hidden">
@@ -319,7 +319,7 @@ export default function StorePage() {
         </div>
       )}
 
-      {/* Confirmation Modal */}
+      {/* verify delete modal */}
       {confirmDeleteId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm">
           <div className="bg-white rounded-2xl border border-slate-200 shadow-xl w-full max-w-sm p-6 overflow-hidden">

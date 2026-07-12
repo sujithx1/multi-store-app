@@ -17,23 +17,20 @@ export default function StockPage() {
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
 
-  // Form states
-  // 1. Add Stock
+  // component input states for adding, adjusting, and transferring stock
   const [addStoreId, setAddStoreId] = useState("");
   const [addProductId, setAddProductId] = useState("");
   const [addQty, setAddQty] = useState<number>(0);
 
-  // 2. Adjust Stock
   const [adjStockId, setAdjStockId] = useState("");
   const [adjQty, setAdjQty] = useState<number>(0);
 
-  // 3. Transfer Stock
   const [transProductId, setTransProductId] = useState("");
   const [transSourceStoreId, setTransSourceStoreId] = useState("");
   const [transDestStoreId, setTransDestStoreId] = useState("");
   const [transQty, setTransQty] = useState<number>(0);
 
-  // Queries
+  // fetch data queries
   const { data: products = [] } = useQuery<Product[]>({
     queryKey: ["products"],
     queryFn: getProducts,
@@ -122,7 +119,7 @@ export default function StockPage() {
       return showError("Source and destination stores must be different");
     }
 
-    // Client-side validation: check if available stock is sufficient
+    // make sure the source store has enough stock before sending the transfer request
     const sourceStock = stocks.find((s) => {
       const pId = typeof s.productId === "object" ? s.productId._id : s.productId;
       const sId = typeof s.storeId === "object" ? s.storeId._id : s.storeId;
@@ -142,7 +139,7 @@ export default function StockPage() {
     });
   };
 
-  // Helper to resolve product/store details from Stocks
+  // lookup helpers to resolve store/product name details
   const getProductObj = (productId: string | { _id: string; name?: string; sku?: string }) => {
     if (typeof productId === "object") return productId;
     return products.find(p => p._id === productId);
@@ -153,7 +150,7 @@ export default function StockPage() {
     return stores.find(s => s._id === storeId);
   };
 
-  // Filter list
+  // filter current stock rows based on active search text
   const filteredStocks = stocks.filter((s) => {
     const p = getProductObj(s.productId);
     const store = getStoreObj(s.storeId);
@@ -248,9 +245,9 @@ export default function StockPage() {
           </div>
         </div>
 
-        {/* Right Side: Simple Card Forms */}
+        {/* Right Side: Stock Control Action Cards */}
         <div className="flex flex-col gap-6">
-          {/* Form 1: Add Stock */}
+          {/* add new product/store stock association */}
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
             <h3 className="text-base font-bold text-slate-900 mb-4 flex items-center gap-2">
               <Plus size={16} className="text-sky-600" />
@@ -291,7 +288,7 @@ export default function StockPage() {
             </form>
           </div>
 
-          {/* Form 2: Adjust Stock */}
+          {/* increment or decrement mapped stock units */}
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
             <h3 className="text-base font-bold text-slate-900 mb-4 flex items-center gap-2">
               <Plus size={16} className="text-emerald-600" />
@@ -345,7 +342,7 @@ export default function StockPage() {
             </div>
           </div>
 
-          {/* Form 3: Transfer Stock */}
+          {/* move stock units between different warehouses */}
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
             <h3 className="text-base font-bold text-slate-900 mb-4 flex items-center gap-2">
               <ArrowLeftRight size={16} className="text-amber-600" />
