@@ -39,29 +39,29 @@ export const quantutyChangeController = async (req: Request, res: Response) => {
         new: true,
       }
     );
-  }
+  } else {
+    const stock = await StockModel.findOneAndUpdate(
+      {
+        _id: id,
+        quantity: {
+          $gte: quantity,
+        },
+      },
+      {
+        $inc: {
+          quantity: -quantity,
+        },
+      },
+      {
+        new: true,
+      }
+    );
 
-  const stock = await StockModel.findOneAndUpdate(
-    {
-      _id: id,
-      quantity: {
-        $gte: quantity,
-      },
-    },
-    {
-      $inc: {
-        quantity: -quantity,
-      },
-    },
-    {
-      new: true,
+    if (!stock) {
+      return res.status(400).json({
+        error: "Insufficient stock",
+      });
     }
-  );
-
-  if (!stock) {
-    return res.status(400).json({
-      error: "Insufficient stock",
-    });
   }
 
   return res.status(200).json({ message: "success"});
