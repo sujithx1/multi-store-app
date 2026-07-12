@@ -9,7 +9,7 @@ export const getProductCOntroller = async (req: Request, res: Response) => {
 
   const filter: QueryFilter<IProduct> = {};
 
-  if (query.search.trim()) {
+  if (query.search?.trim()) {
     const searchterm = `${query.search.trim()}`;
 
     filter.$or = [
