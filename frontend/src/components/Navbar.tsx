@@ -7,10 +7,10 @@ interface NavbarProps {
 
 export default function Navbar({ user, onLogout }: NavbarProps) {
   return (
-    <header className="glass-panel" style={{ borderRadius: '0 0 16px 16px', marginBottom: '2rem' }}>
-      <div className="container" style={{ padding: '1rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <header className="glass-panel" style={{ borderRadius: '0 0 16px 16px', marginBottom: '1rem' }}>
+      <div className="container" style={{ padding: '0.5rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{ background: 'var(--primary)', padding: '0.5rem', borderRadius: '8px', display: 'flex' }}>
+          <div style={{ background: 'var(--primary)', padding: '0.35rem', borderRadius: '8px', display: 'flex' }}>
             <Package size={20} color="white" />
           </div>
           <span style={{ fontSize: '1.25rem', fontWeight: 600, letterSpacing: '0.5px' }}>StockFlow</span>
