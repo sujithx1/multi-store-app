@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface ProtectedRouteProps {
-  user: { username: string; role: 'Admin' | 'Shopper' } | null;
-  allowedRoles?: ('Admin' | 'Shopper')[];
+  user: { username: string; role: 'admin' | 'shopper' } | null;
+  allowedRoles?: ('admin' | 'shopper')[];
   fallback: React.ReactNode;
   children: React.ReactNode;
 }
