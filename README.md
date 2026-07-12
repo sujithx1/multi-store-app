@@ -13,13 +13,10 @@ Ensure you have Node.js and MongoDB installed on your system.
 
 ### 2. Backend Installation & Start
 ```bash
-# Navigate to the backend directory
 cd backend
 
-# Install project dependencies
 npm install
 
-# Set up environment variables
 # Create a .env file with your PORT and MONGO_URI
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/stockflow
@@ -30,7 +27,6 @@ npm run dev
 
 ### 3. Frontend Installation & Start
 ```bash
-# Navigate to the frontend directory
 cd frontend
 
 # Install project dependencies
