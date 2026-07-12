@@ -16,7 +16,6 @@ export const getStoresController = async (req: Request, res: Response) => {
   }
 
   const stores = await StoreModel.find(condition)
-    .populate("products")
     .sort({ createdAt: -1 })
     .skip(query.offcet)
     .limit(query.limit);

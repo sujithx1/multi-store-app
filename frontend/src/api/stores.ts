@@ -7,10 +7,10 @@ export interface StoreType {
 
 export const getStores = async (): Promise<StoreType[]> => {
   const res = await api.get('/store');
-  return res.data;
+  return res.data?.data
 };
 
-export const createStore = async (newStore: { name: string }): Promise<StoreType> => {
+export const createStore = async (newStore: { name: string ,location:string}): Promise<StoreType> => {
   const res = await api.post('/store', newStore);
-  return res.data;
+  return res.data?.data
 };

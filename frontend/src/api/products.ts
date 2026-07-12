@@ -8,10 +8,10 @@ export interface Product {
 
 export const getProducts = async (): Promise<Product[]> => {
   const res = await api.get('/product');
-  return res.data;
+  return res.data?.data
 };
 
 export const createProduct = async (newProduct: { name: string; sku: string }): Promise<Product> => {
   const res = await api.post('/product', newProduct);
-  return res.data;
+  return res.data?.data
 };
