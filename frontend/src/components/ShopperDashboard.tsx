@@ -81,7 +81,7 @@ export default function ShopperDashboard() {
               marginBottom: "0.25rem",
             }}
           >
-            Product Stock Catalog
+            Product Stocks
           </h1>
       
         </div>

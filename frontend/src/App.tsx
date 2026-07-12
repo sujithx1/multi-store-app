@@ -15,7 +15,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 interface UserState {
   username: string;
-  role: "Admin" | "Shopper";
+  role: "admin" | "shopper";
   token: string;
 }
 
@@ -50,6 +50,8 @@ function MainAppContent() {
     },
     staleTime: Infinity,
   });
+
+  console.log('user',user);
 
   const handleLoginSuccess = (d:{
     token:string,
@@ -99,7 +101,7 @@ function MainAppContent() {
           allowedRoles={user?.role ? [user.role] : []}
           fallback={authFallback}
         >
-          {user?.role === "Admin" ? <AdminDashboard /> : <ShopperDashboard />}
+          {user?.role === "admin" ? <AdminDashboard /> : <ShopperDashboard />}
         </ProtectedRoute>
       </main>
     </div>
