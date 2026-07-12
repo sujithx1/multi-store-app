@@ -9,7 +9,6 @@ const zodSignUpSchema = z.object({
   username: z.string("username is required").min(3),
   email: z.email("invalid email"),
   password: z.string("password is required").min(6),
-  role: z.enum(["admin", "shopper"]),
 });
 
 export const signUpController = async (req: Request, res: Response) => {
@@ -30,7 +29,6 @@ export const signUpController = async (req: Request, res: Response) => {
     username,
     email,
     password: hash,
-    role: body.data.role as UserRole
   });
 
   const userobj = await UserModel.findOne({ email }).select("-password");

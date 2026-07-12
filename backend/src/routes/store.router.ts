@@ -1,9 +1,11 @@
 import { Router } from 'express';
 import { authenticate, isAdminOnly } from '../middleware/authmiddleware';
-import { getStoresController, storeCreateController } from '../controller';
+import { deleteStoreController, getStoresController, storeCreateController, storeUpdateController } from '../controller';
 const storeRouter = Router();
 storeRouter.use(authenticate);
 storeRouter.post('/', isAdminOnly, storeCreateController);
 storeRouter.get('/',  getStoresController);
+storeRouter.put('/:id', isAdminOnly, storeUpdateController);
+storeRouter.delete('/:id', isAdminOnly, deleteStoreController);
 
 export default storeRouter;

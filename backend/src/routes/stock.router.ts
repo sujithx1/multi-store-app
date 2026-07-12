@@ -5,7 +5,7 @@ import { listStockController, quantutyChangeController, transferStockController,
 const stockrouter = Router();
 
 stockrouter.use(authenticate)
-stockrouter.post("/adjust/:id",authenticate, isAdminOnly, quantutyChangeController);
+stockrouter.post("/adjust/:id",isAdminOnly, quantutyChangeController);
 stockrouter.post("/transfer", isAdminOnly, transferStockController);
 stockrouter.post("/add", isAdminOnly, addStockController);
 stockrouter.post("/update", isAdminOnly, updateStockController);
