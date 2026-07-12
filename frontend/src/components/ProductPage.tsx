@@ -290,8 +290,9 @@ export default function ProductPage() {
               <AlertCircle className="mx-auto h-12 w-12 text-rose-500 mb-3" />
               <h3 className="text-base font-bold text-slate-900 mb-2">Delete Product</h3>
               <p className="text-xs text-slate-500 mb-6">
-                Are you sure you want to delete this product? All mapped store stocks will also be affected. This action cannot be undone.
-              </p>
+                Are you sure you want to delete this product? 
+                
+              </p>  
               <div className="flex gap-3">
                 <button
                   onClick={() => setConfirmDeleteId(null)}

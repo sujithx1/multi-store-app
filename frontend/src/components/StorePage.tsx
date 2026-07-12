@@ -327,7 +327,7 @@ export default function StorePage() {
               <AlertCircle className="mx-auto h-12 w-12 text-rose-500 mb-3" />
               <h3 className="text-base font-bold text-slate-900 mb-2">Delete Store</h3>
               <p className="text-xs text-slate-500 mb-6">
-                Are you sure you want to delete this store location? Mapped product stocks inside this store will also be deleted. This action cannot be undone.
+                Are you sure you want to delete this store 
               </p>
               <div className="flex gap-3">
                 <button
