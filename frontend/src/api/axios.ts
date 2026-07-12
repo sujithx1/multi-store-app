@@ -21,8 +21,13 @@ api.interceptors.response.use(
   (res) => res,
   (error) => {
     if (error?.response?.status === 401) {
-      localStorage.reoveItem('stock_user');
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.reload();
     }
+    // Standardize error text extraction so callers can easily handle it
+    const errorMessage = error?.response?.data?.error || error?.response?.data?.message || error.message || 'An unexpected error occurred';
+    error.friendlyMessage = errorMessage;
     return Promise.reject(error);
   }
 );
