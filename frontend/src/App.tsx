@@ -6,18 +6,18 @@ import {
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useState } from "react";
-import Login from "./components/Login";
+import Login, { UserResponse } from "./components/Login";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
 import ShopperDashboard from "./components/ShopperDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminDashboard from "./components/AdminDashboard";
 
-interface UserState {
-  username: string;
-  role: "admin" | "shopper";
-  token: string;
-}
+// interface UserState {
+//   username: string;
+//   role: "admin" | "shopper";
+//   token: string;
+// }
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,7 +42,7 @@ function MainAppContent() {
   const [view, setView] = useState<"login" | "register">("login");
 
   // Read login details directly from TanStack query store
-  const { data: user, isLoading: checkingAuth } = useQuery<UserState | null>({
+  const { data: user, isLoading: checkingAuth } = useQuery<UserResponse['user'] | null>({
     queryKey: ["currentUser"],
     queryFn: () => {
       const savedUser = localStorage.getItem("user");
@@ -53,10 +53,7 @@ function MainAppContent() {
 
   console.log('user',user);
 
-  const handleLoginSuccess = (d:{
-    token:string,
-    user:UserState
-  }) => {
+  const handleLoginSuccess = (d:UserResponse) => {
     localStorage.setItem("token", d.token);
     localStorage.setItem("user", JSON.stringify(d.user));
     queryClient.setQueryData(["currentUser"], d.user);

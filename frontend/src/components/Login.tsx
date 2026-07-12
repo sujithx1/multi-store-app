@@ -6,7 +6,7 @@ export interface UserResponse {
   token: string;
   user: {
     username: string;
-    role: "Admin" | "Shopper";
+    role: "admin" | "shopper";
     token: string;
   };
 }

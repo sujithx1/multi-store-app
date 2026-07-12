@@ -18,7 +18,7 @@ export const login = async (req: Request, res: Response) => {
   const { email, password } = body.data;
 
   const user = await UserModel.findOne({ email }).select(
-    "+password name email role"
+    "+password name email role username"
   ); // dont need to use  lean because i need to remove  the password to  response
 
   if (!user) {
