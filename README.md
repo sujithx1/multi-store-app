@@ -2,6 +2,10 @@
 
 A clean and lightweight web application built for retail inventory(stock) tracking and stock distribution across store locations.
 
+
+My Suggesions  is  light weight project we can use  Bun and Hono so it will be very fast not in production im saying development   
+
+
 ## Tech Stack
 - **Frontend**: React, TypeScript, TanStack Query, TailwindCSS, Axios
 - **Backend**: Node.js, Express, MongoDB (Mongoose), Zod validation
